@@ -35,7 +35,7 @@ jobs:
 
       - name: Building Electrostatic-Library Binaries
         run: sudo ./helper-scripts/project-impl/compile-all.sh
-	  
+
       - name: Building Electrostatic-Library Examples
         run: ./helper-scripts/project-impl/compile-examples.sh "-m64" "main.cpp" "executable-example" "linux" "x86-64" "x86-64/exe"
 

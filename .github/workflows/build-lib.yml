@@ -37,7 +37,7 @@ jobs:
         run: sudo ./helper-scripts/project-impl/compile-all.sh
 
       - name: Building Electrostatic-Library Examples
-        run: ./helper-scripts/project-impl/compile-examples.sh "-m64" "main.cpp" "executable-example" "linux" "x86-64" "x86-64/exe"
+        run: sudo ./helper-scripts/project-impl/compile-examples.sh "-m64" "main.cpp" "executable-example" "linux" "x86-64" "x86-64/exe"
 
       - name: Testing Electrostatic-app ELF
-        run: ./cmake-build/linux/x86-64/exe/executable-example.elf
+        run: sudo ./cmake-build/linux/x86-64/exe/executable-example.elf

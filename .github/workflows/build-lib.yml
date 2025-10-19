@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ 'ubuntu-latest' ]
-    name: Build Electrostatic App
+    name: Build Electrostatic Library
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -33,8 +33,11 @@ jobs:
       - name: User's Permissions Granting
         run: chmod +rwx ./helper-scripts/project-impl/*.sh
 
-      - name: Building Electrostatic-application Executable Binaries
+      - name: Building Electrostatic-Library Binaries
         run: sudo ./helper-scripts/project-impl/compile-all.sh
 
+	  - name: Building Electrostatic-Library Examples
+		run: ./helper-scripts/project-impl/compile-examples.sh "-m64" "main.cpp" "executable-example" "linux" "x86-64" "x86-64/exe"
+
       - name: Testing Electrostatic-app ELF
-        run: sudo ./build/linux/x86-64/electrostatic-app.elf
+        run: ./cmake-build/linux/x86-64/exe/executable-example.elf

@@ -1,12 +1,14 @@
 #!/bin/bash
 
 project_root=$(pwd)
-app_src="${project_root}/src"
-app_headers="${project_root}/include"
-app_libs="${project_root}/libs"
+lib_src="${project_root}/src"
+libs="${project_root}/libs"
 
 sandbox_path="/opt/electrostatic-sandbox"
-COMMISSION_EXE="electrostatic-app"
+COMMISSION_LIB="electroextension"
+COMMISSION_LIB_AR="electroextension-a"
+COMMISSION_LIB_4j="${COMMISSION_LIB}4j"
+
 # home for toolchains and header files to link to sources
 GCC_BIN_x86="gcc"
 GPP_BIN_x86="g++"
@@ -38,9 +40,18 @@ x86_64="x86-64"
 TARGET_x86_64="-m64"
 TARGET_x86="-m32"
 
+# cmake build caches
+source_dir="."
+examples_dir="examples"
+
+headers="$(pwd)/include"
+POST_COMPILE_TRUE="POST_COMPILE_TRUE"
+
+e4j_dir="electrostatic4j/electrostatic4j-native"
+serial4j_dir="electrostatic4j/serial4j"
+
 # AVR-DUDE properties
 BAUD_RATE='57600'
 PORT='/dev/ttyUSB0'
 CHIP_ALIAS='m328p'
 PROGRAMMER='arduino'
-

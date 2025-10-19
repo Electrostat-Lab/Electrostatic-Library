@@ -1,7 +1,7 @@
-# Electrostatic-application
-> An executable template utilizing the Electrostatic-Sandbox SDK
+# Electrostatic-Library
+> A library template utilizing the Electrostatic-Sandbox SDK, acting as an extension pack.
 
-This is a template that builds a cross-platform native executable application for Linux variants, Android variants, and AVR MCU variants utilizing the Electrostatic-Sandbox SDK libraries.
+This is a template that builds a cross-platform native library for Linux variants, Android variants, and AVR MCU variants linking against the Electrostatic-Sandbox SDK libraries. The library is built into static archives, and 
 
 ## System Requirements
 1) A GNU/Linux System or a WSL System.

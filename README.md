@@ -1,7 +1,7 @@
 # Electrostatic-Library
 > A library template utilizing the Electrostatic-Sandbox SDK, acting as an extension pack.
 
-This is a template that builds a cross-platform native library for Linux variants, Android variants, and AVR MCU variants linking against the Electrostatic-Sandbox SDK libraries. The library is built into static archives, and 
+This is a template that builds a cross-platform native library for Linux variants, Android variants, and AVR MCU variants linking them against the Electrostatic-Sandbox SDK libraries. The library is built into static archives, and dynamic libraries. The template is also provided by `examples` module in which a single source file with a `main` function could be compiled and run on its respective system.
 
 ## System Requirements
 1) A GNU/Linux System or a WSL System.
@@ -29,18 +29,28 @@ chmod +x ./helper-scripts/project-impl/compile-all.sh && \
 Introducing other building routines is far easy. However, it's mostly dependent on whether the original SDK is supporting those platforms. If not yet, you will have to build a pre-compilation header that excludes the SDK for those unsupported systems or else you will get linking errors.
 
 Usually the build routines will look like that in general:
-https://github.com/Electrostat-Lab/Electrostatic-application/blob/0a4d1cb1635df59e5753aad2e2fad8a380d87706/helper-scripts/project-impl/compile-all.sh#L3-L14
+https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c02285e28c5657aa2438793b367/helper-scripts/project-impl/compile-all-linux.sh#L1-L17
 
 They are dependent on that abstraction: 
-https://github.com/Electrostat-Lab/Electrostatic-application/blob/0a4d1cb1635df59e5753aad2e2fad8a380d87706/helper-scripts/abstract/abstract-compile.sh#L1-L35
+https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c02285e28c5657aa2438793b367/helper-scripts/abstract/abstract-compile.sh#L1-L41
 
 ## Changing the project output name
-This could be attained by changing the variable `COMMISSION_EXE` in the `./helper-scripts/project-impl/variables.sh`:
-https://github.com/Electrostat-Lab/Electrostatic-application/blob/4963fe780fbb90f48d0fe2448488f006e202e88e/helper-scripts/project-impl/variables.sh#L9
+This could be attained by changing the variable `COMMISSION_LIB` and `COMMISSION_LIB_AR` in the `./helper-scripts/project-impl/variables.sh`:
+https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c02285e28c5657aa2438793b367/helper-scripts/project-impl/variables.sh#L8-L9
 
 ## Adding new dependencies
 Add your dependencies in the `libs` directory with the system directory of choice if required (in case of platform-dependent binaries); the build script finds all libraries listed under this directory through this code snippet:
-https://github.com/Electrostat-Lab/Electrostatic-application/blob/4963fe780fbb90f48d0fe2448488f006e202e88e/helper-scripts/project-impl/compile-electrostatic-app.sh#L27-L43
+https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c02285e28c5657aa2438793b367/helper-scripts/project-impl/compile-electrostatic.sh#L27-L38
+
+## Adding new examples to test the introduced APIs
+* Adding new examples could be achieved by creating new source code (single source files) under the `examples` module, and using the following command to compile and run the example:
+
+
+* Adding new examples for microcontroller programming is much the same, but will require uploading as a post-compilation script.
+
+## Excluding parts of the source code (dissociating the source code into modules)
+This could be attained through the build routines of the supported systems by decomposing the source directory into sub-directories and pass them as source modules to the compilation front-end (Ccoffee); the following shows the use of all the source code as a single module:
+https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c02285e28c5657aa2438793b367/helper-scripts/project-impl/compile-all-android.sh#L4-L12
 
 ## Build front-end automata, CMake, and Toolchains
 Essentially, the build architecture of the Electrostatic-Sandbox SDK is based on the idea of creating a front-end scripted API that creates a building automata, which entails taking an input and passing into a chain of states, and eventually ending with a terminal state; thus the recognition of the machine to the building holds if the terminal state is being reached by the program counter. The initial input to the automata is mainly a building routine instruction and the outputs are proceeded and could be found at the filesystems cmake-build and build, where the terminal output is produced.

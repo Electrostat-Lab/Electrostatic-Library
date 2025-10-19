@@ -44,7 +44,12 @@ https://github.com/Electrostat-Lab/Electrostatic-Library/blob/a6d9669dde096c0228
 
 ## Adding new examples to test the introduced APIs
 * Adding new examples could be achieved by creating new source code (single source files) under the `examples` module, and using the following command to compile and run the example:
-
+```bash
+$ ./helper-scripts/project-impl/compile-examples.sh "-m64" "main.cpp" "executable-example" "linux" "x86-64" "x86-64/exe"
+$ ./cmake-build/linux/x86-64/exe/executable-example.elf
+```
+> [!NOTE]
+> This command links the specified source example against the `Electrostatic-Sandbox SDK` libraries and the `Electroextension` library (your native library).
 
 * Adding new examples for microcontroller programming is much the same, but will require uploading as a post-compilation script.
 

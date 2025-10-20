@@ -3,6 +3,8 @@
 
 This is a template that builds a cross-platform native library for Linux variants, Android variants, and AVR MCU variants linking them against the Electrostatic-Sandbox SDK libraries. The library is built into static archives, and dynamic libraries. The template is also provided by `examples` module in which a single source file with a `main` function could be compiled and run on its respective system.
 
+<img width="1147" height="290" alt="image" src="https://github.com/user-attachments/assets/d2b9a685-a063-4bf1-b0ee-bf4ce5e1d4f4" />
+
 ## System Requirements
 1) A GNU/Linux System or a WSL System.
 2) A minimum of 1GB RAM, and 4GB Disk Space.
